@@ -1,9 +1,12 @@
+    
+
 #include<bits/stdc++.h>
 using namespace std;
 
-int* getlps(string p){
+//https://practice.geeksforgeeks.org/problems/search-pattern0205/1
+vector<int> getlps(string p){
     int len=p.length();
-    int* lps=new int[len];
+    vector<int> lps(len);
     lps[0]=0;
     int i=1,j=0;
     while(i<len){
@@ -11,6 +14,7 @@ int* getlps(string p){
             lps[i]=j+1;
             j++;
             i++;
+            
         }
         else{
             if(j!=0){
@@ -25,19 +29,21 @@ int* getlps(string p){
     return lps;
 }
 
-bool kmpsearch(string t,string p){
+
+    void kmpsearch(string t,string p, vector<int> &ans){
 
     int tlen=t.length();
     int plen=p.length();
     int i=0,j=0;
-    int* lps=getlps(p);
+    vector<int> lps=getlps(p);
     while(i<tlen && j<plen){
         if(t[i]==p[j]){
             i++;
             j++;
             if(j==plen){
-                cout<<i-plen<<" ";
-                j=0;
+             //   cout<<i-plen<<" ";
+             ans.push_back(i-plen+1);
+                j=lps[j-1];
             }
         }
         else{
@@ -50,26 +56,17 @@ bool kmpsearch(string t,string p){
         }
     }
 
-        if(j==plen){
-            return true;
-        }
-        else return false;
+        
         
 }
 
-int main(){
-   // string str="abcxabcdabcdabcy";
- //   string p="abcdabcx";
-  //  string p="abcdabcy";
-  string  str = "batmanandrobinarebat";string p = "bat";
-  //  cin>>s>>p;
-    // int* gem=getlps(p);
-    // for(int i=0;i<p.length();i++){
-    //     cout<<gem[i]<<" ";
-    // }
-    cout<<kmpsearch(str,p)<<endl;
-    return 0;
-}
-
+        vector <int> search(string pat, string txt)
+        {
+            //code hee.
+            vector<int> ans;
+            kmpsearch(txt,pat,ans);
+            return ans;
+            
+        }
 
 
