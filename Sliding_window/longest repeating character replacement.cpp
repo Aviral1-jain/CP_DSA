@@ -1,3 +1,5 @@
+//https://leetcode.com/problems/longest-repeating-character-replacement/description/
+
 int characterReplacement(string s, int k) {
         int i=0,j=0;
         int maxi=0,ans=INT_MIN;
